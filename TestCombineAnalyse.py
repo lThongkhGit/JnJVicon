@@ -27,7 +27,7 @@ def combine_all(session_type):
         df_session = pd.read_csv(path_to_session + session + "/Analysis/" + session + "_result.csv", sep=';')
         df_session = df_session.drop(columns=['Unnamed: 0'])
         df_all = df_all.append(df_session)
-    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined.csv",
+    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined_07_11_2023.csv",
                   sep=';')
 
 
@@ -82,8 +82,8 @@ def combine_head_angle_calibration():
 #cancel_trails(root_path + 'Trails_canceled.csv', data_path + "Complex_Analysed_Result/Complex_Session_result_combined_27_09.csv", "Complex")
 sessions = ["2003"]
 # add_sessions_to_combined(sessions, "Crossing")
-combine_head_angle_calibration()
-
+#combine_head_angle_calibration()
+combine_all('Crossing')
 
 
 # c3d_to_csv('C:/Users/lthongkh/Documents/JNJ/Nexus-JJ/P1019/Complex/Trial_29_ComplexT_True-7_vicon_structured.c3d')
