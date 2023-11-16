@@ -13,7 +13,7 @@ Process:
 - Rename_combined()
 - Copy local files to OneDrive
 - Rename_combined() back
-- Run loop with replace_combine_one_line()
+- Run loop with replace_combine_one_line() (change file name to date)
 '''
 
 nexus_folder = 'C:/Users/lthongkh/OneDrive - JNJ/Loco/Nexus-JJ'
@@ -206,7 +206,7 @@ def replace_old_csv_data():
 
 '''Method called to replace specific trials data in
 the combined file'''
-def replace_combine_one_line(session, task):
+def replace_combine_one_line(session, task, old_date, new_date):
     new_df = pd.read_csv(
         analysis_path + task + '/P_' + session + '_Session_' + task + '/Analysis/P_' + session + '_Session_' + task + '_result.csv',
         sep=';')
@@ -215,7 +215,7 @@ def replace_combine_one_line(session, task):
         data_path + task + '_Analysed/P_' + session + '_Session_' + task + '/Analysis/P_' + session + '_Session_' + task + '_result.csv',
         sep=';')
     current_df = current_df.drop(columns=['Unnamed: 0'])
-    old_df = pd.read_csv(data_path + task + "_Analysed_Result/" + task + "_Session_result_combined_03_10_2023.csv", sep=';')
+    old_df = pd.read_csv(data_path + task + "_Analysed_Result/" + task + "_Session_result_combined_" + old_date + ".csv", sep=';')
     old_df = old_df.drop(columns=['Unnamed: 0'])
     session_name = new_df["session_name"][0]
 
@@ -242,7 +242,7 @@ def replace_combine_one_line(session, task):
     current_df.to_csv(
         data_path + task + '_Analysed/P_' + session + '_Session_' + task + '/Analysis/P_' + session + '_Session_' + task + '_result.csv',
         sep=';')
-    old_df.to_csv(data_path + task + "_Analysed_Result/" + task + "_Session_result_combined_07_11_2023.csv", sep=';')
+    old_df.to_csv(data_path + task + "_Analysed_Result/" + task + "_Session_result_combined_" + new_date + ".csv", sep=';')
 
 
 # To use in case files were downloaded to OneDrive before
@@ -279,5 +279,5 @@ def rename_combined():
 
 #replace_old_csv_data()
 #rename_combined()
-for session_folder in os.listdir(analysis_path + "Crossing/"):
-    replace_combine_one_line(session_folder.split("_")[1], "Crossing")
+for session_folder in os.listdir(analysis_path + "Complex/"):
+    replace_combine_one_line(session_folder.split("_")[1], "Complex", "15_11_2023", "16_11_2023")

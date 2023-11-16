@@ -20,28 +20,29 @@ def replace_line(excel_file, trial):
     df_session_results.to_csv(excel_file, sep=';')
 
 
-def combine_all(session_type):
+def combine_all(session_type, date):
     df_all = pd.DataFrame()
     path_to_session = data_path + session_type + "_Analysed/"
     for session in os.listdir(path_to_session):
         df_session = pd.read_csv(path_to_session + session + "/Analysis/" + session + "_result.csv", sep=';')
         df_session = df_session.drop(columns=['Unnamed: 0'])
         df_all = df_all.append(df_session)
-    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined_07_11_2023.csv",
+    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined_" + date + ".csv",
                   sep=';')
 
 
-def add_sessions_to_combined(sessions, session_type):
-    df_all = pd.read_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined.csv",
+def add_sessions_to_combined(sessions, session_type, date_old, date_new):
+    df_all = pd.read_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined_" + date_old + ".csv",
                          sep=";")
     for session in sessions:
-        session_csv_path = root_path + session_type + "_Analyzed/P_" + session + "_Session_" + session_type + \
-                           "/Analysis/P_" + session + "_Session_" + session_type + "_result.csv"
+        session_csv_path = data_path + session_type + "_Analysed/" + "P_" + session + "_Session_" + session_type + "/Analysis/" +\
+                           "P_" + session + "_Session_" + session_type + "_result.csv"
+        print(session_csv_path)
         df_session = pd.read_csv(session_csv_path, sep=";")
         df_all = df_all.append(df_session)
     df_all = df_all.drop(columns=['Unnamed: 0'])
     df_all = df_all.sort_values(by=["session_name", "index"])
-    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined.csv",
+    df_all.to_csv(data_path + session_type + "_Analysed_Result/" + session_type + "_Session_result_combined_" + date_new + ".csv",
                   sep=";")
 
 '''
@@ -80,10 +81,10 @@ def combine_head_angle_calibration():
 
 
 #cancel_trails(root_path + 'Trails_canceled.csv', data_path + "Complex_Analysed_Result/Complex_Session_result_combined_27_09.csv", "Complex")
-sessions = ["2003"]
-# add_sessions_to_combined(sessions, "Crossing")
+sessions = ["2001"]
+#add_sessions_to_combined(sessions, "Crossing", "02_11_2023", "13_11_2023")
 #combine_head_angle_calibration()
-combine_all('Crossing')
+combine_all('Crossing', "16_11_2023")
 
 
 # c3d_to_csv('C:/Users/lthongkh/Documents/JNJ/Nexus-JJ/P1019/Complex/Trial_29_ComplexT_True-7_vicon_structured.c3d')

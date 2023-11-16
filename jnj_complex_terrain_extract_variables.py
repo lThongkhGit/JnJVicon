@@ -1349,7 +1349,7 @@ class ComplexTerrainTrialResult(preparation.TrialResult):
             STD_MOS_AP_Y_in_range = False
             self.num_abnormal_value += 1
 
-        if 0 <= max_MOS_AP_y <= 1:
+        if 0 <= max_MOS_AP_y <= 0.6:
             MAX_MOS_AP_Y_in_range = True
         else:
             MAX_MOS_AP_Y_in_range = False
@@ -1373,7 +1373,7 @@ class ComplexTerrainTrialResult(preparation.TrialResult):
             STD_MOS_ML_X_in_range = False
             self.num_abnormal_value += 1
 
-        if 0 <= max_MOS_ML_x <= 1:
+        if 0 <= max_MOS_ML_x <= 0.6:
             MAX_MOS_ML_X_in_range = True
         else:
             MAX_MOS_ML_X_in_range = False

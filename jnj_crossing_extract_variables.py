@@ -350,7 +350,7 @@ class CrossingTrialData(preparation.TrialData):
         # Calculate the range of some variables in the result
         for i in range(2):
             if self.result.list_crossing[i].can_calculate_result:
-                if 0 <= self.result.list_crossing[i].penultimate_foot_placement <= 1200:
+                if 100 <= self.result.list_crossing[i].penultimate_foot_placement <= 1200:
                     self.result.list_crossing[i].penultimate_foot_placement_in_range = True
                 else:
                     self.result.list_crossing[i].penultimate_foot_placement_in_range = False
@@ -368,37 +368,37 @@ class CrossingTrialData(preparation.TrialData):
                     self.result.list_crossing[i].lead_vertical_toe_clearance_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].trail_vertical_toe_clearance <= 500:
+                if 0 <= self.result.list_crossing[i].trail_vertical_toe_clearance <= 400:
                     self.result.list_crossing[i].trail_vertical_toe_clearance_in_range = True
                 else:
                     self.result.list_crossing[i].trail_vertical_toe_clearance_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if -800 <= self.result.list_crossing[i].lead_foot_placement_toe <= 0:
+                if -800 <= self.result.list_crossing[i].lead_foot_placement_toe <= -200:
                     self.result.list_crossing[i].lead_foot_placement_toe_in_range = True
                 else:
                     self.result.list_crossing[i].lead_foot_placement_toe_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if -800 <= self.result.list_crossing[i].lead_foot_placement_heel <= 0:
+                if -800 <= self.result.list_crossing[i].lead_foot_placement_heel <= -100:
                     self.result.list_crossing[i].lead_foot_placement_heel_in_range = True
                 else:
                     self.result.list_crossing[i].lead_foot_placement_heel_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if -1700 <= self.result.list_crossing[i].trail_foot_placement_toe <= 0:
+                if -1700 <= self.result.list_crossing[i].trail_foot_placement_toe <= -700:
                     self.result.list_crossing[i].trail_foot_placement_toe_in_range = True
                 else:
                     self.result.list_crossing[i].trail_foot_placement_toe_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if -1700 <= self.result.list_crossing[i].trail_foot_placement_heel <= 0:
+                if -1700 <= self.result.list_crossing[i].trail_foot_placement_heel <= -700:
                     self.result.list_crossing[i].trail_foot_placement_heel_in_range = True
                 else:
                     self.result.list_crossing[i].trail_foot_placement_heel_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 300 <= self.result.list_crossing[i].step_length_crossing <= 1200:
+                if 500 <= self.result.list_crossing[i].step_length_crossing <= 1200:
                     self.result.list_crossing[i].step_length_crossing_in_range = True
                 else:
                     self.result.list_crossing[i].step_length_crossing_in_range = False
@@ -428,31 +428,31 @@ class CrossingTrialData(preparation.TrialData):
                     self.result.list_crossing[i].double_support_crossing_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].single_support_lead <= 0.8:
+                if 0 <= self.result.list_crossing[i].single_support_lead <= 0.6:
                     self.result.list_crossing[i].single_support_lead_in_range = True
                 else:
                     self.result.list_crossing[i].single_support_lead_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].mean_speed_head_lateral:
+                if 0 <= self.result.list_crossing[i].mean_speed_head_lateral <= 300:
                     self.result.list_crossing[i].mean_speed_head_lateral_in_range = True
                 else:
                     self.result.list_crossing[i].mean_speed_head_lateral_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].sd_speed_head_lateral:
+                if 0 <= self.result.list_crossing[i].sd_speed_head_lateral <= 300:
                     self.result.list_crossing[i].sd_speed_head_lateral_in_range = True
                 else:
                     self.result.list_crossing[i].sd_speed_head_lateral_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].mean_speed_head_longitudinal:
+                if 0 <= self.result.list_crossing[i].mean_speed_head_longitudinal <= 2000:
                     self.result.list_crossing[i].mean_speed_head_longitudinal_in_range = True
                 else:
                     self.result.list_crossing[i].mean_speed_head_longitudinal_in_range = False
                     self.result.num_abnormal_value += 1
 
-                if 0 <= self.result.list_crossing[i].sd_speed_head_longitudinal:
+                if 0 <= self.result.list_crossing[i].sd_speed_head_longitudinal <= 400:
                     self.result.list_crossing[i].sd_speed_head_longitudinal_in_range = True
                 else:
                     self.result.list_crossing[i].sd_speed_head_longitudinal_in_range = False
@@ -543,13 +543,13 @@ class CrossingTrialResult(preparation.TrialResult):
         super().generate_trial_result()
 
         # Add _in_range for some general trial result
-        if 6 <= self.trial_duration <= 20:
+        if 6 <= self.trial_duration <= 18:
             self.df_trial_result['trial_duration_in_range'] = True
         else:
             self.df_trial_result['trial_duration_in_range'] = False
             self.num_abnormal_value += 1
 
-        if 3 <= self.walking_duration <= 8:
+        if 2.5 <= self.walking_duration <= 7:
             self.df_trial_result['walking_duration_in_range'] = True
         else:
             self.df_trial_result['walking_duration_in_range'] = False
@@ -567,13 +567,13 @@ class CrossingTrialResult(preparation.TrialResult):
             self.df_trial_result['walking_speed_in_range'] = False
             self.num_abnormal_value += 1
 
-        if 0 <= self.sd_walking_speed <= 400:
+        if 70 <= self.sd_walking_speed <= 350:
             self.df_trial_result['sd_walking_speed_in_range'] = True
         else:
             self.df_trial_result['sd_walking_speed_in_range'] = False
             self.num_abnormal_value += 1
 
-        if 0 <= self.pitch_head_mean <= 40:
+        if -10 <= self.pitch_head_mean <= 40:
             self.df_trial_result['pitch_head_mean_in_range'] = True
         else:
             self.df_trial_result['pitch_head_mean_in_range'] = False
